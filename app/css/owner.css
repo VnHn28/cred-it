@@ -1,0 +1,32 @@
+header{
+    height: 150px;
+}
+strong{
+    font-size: 23px;
+    font-weight: 800;
+}
+label{
+    font-size: 23px;
+    font-weight: 800;
+}
+input{
+    margin-bottom: 1%;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.setapproval{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top:3%;
+}
+.setapproval .check{
+    margin: 0% 0% 0% 0%;
+    height: 20px;
+    width: 20px;
+}

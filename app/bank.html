@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>銀行頁面</title>
+        <meta charset="UTF-8">
+        <!-- 響應式網站 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+         <!-- adminlte上面找template-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css" />
+        <!-- 自定義卷軸 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/css/OverlayScrollbars.min.css" />
+
+        <link rel="icon" type="image/png" sizes="16x16" href="img/pepehype.png"> // Favicon
+        <link rel="stylesheet" href="css/bank.css"/>
+
+        <!-- jquery函式庫 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <!-- bootstrap函式庫 popper買bootstrap送popper-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- adminlte上面找template-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
+        <!-- font awesome -->
+            <!-- font awesome -->
+        <script src="https://kit.fontawesome.com/943e78bd4b.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body class="sidebar-mini layout-fixed">
+        <header></header>
+        <div class="wrapper">
+            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    </li>
+                </ul>
+            </nav>
+
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                <div class="sidebar">
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-item">
+                                <a href="client.html" class="nav-link" id="client_href">
+                                    <i class="nav-icon fas fa-file-alt"></i>
+                                    <p>用戶</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="bank.html" class="nav-link active" id="bank_href">
+                                    <i class="nav-icon fas fa-wallet"></i>
+                                    <p>銀行</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="admin.html" class="nav-link" id="admin_href">
+                                    <i class="nav-icon fas fa-tools"></i>
+                                    <p>管理者</p>
+                                </a>
+                            </li>                   
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <section id="MainPage">
+                <div class="main">
+                    <div class="bg">
+                        <h2 class="titlefont text-center"><span data-set="bank_name" id="bank_name"></span>銀行<br></h2>
+                        <div class="Select">
+                            <div class="UserSelect">
+                                <div class="col-md-12">
+                                    <strong>您的錢包帳戶</strong>
+                                    <input type="text" class="form-control" id="account" readonly />
+                                </div>
+                                <div class="col-md-12">
+                                    <strong>鏈</strong>
+                                    <input type="text" class="form-control" id="chain" readonly />
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="contract_address">合約位址</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="contract_address" placeholder="請輸入合約位址" value="0x84feA55448731f62F4C8FfC7AD3482396F44B914" />
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-warning" id="contract_address_btn">連結</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 1%;"></div>
+                                <div class="col-12">
+                                    <strong>客戶位址</strong>
+                                    <div class="input-group">
+                                        <input type="text"  class="form-control" id="user_address"placeholder="請輸入要新增的客戶位址" />
+                                        <div class="input-group-prepend">
+                                            <button type="button" id="add_user_btn" class="btn btn-warning">新增</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 2%;"></div>
+                                <div class="delete">
+                                    <div class="col-md-12">                                
+                                        <select data-set="Right" name="user_delete_list" id="user_deletelist">
+                                            <option>選擇欲刪除的客戶</option>
+                                        </select>
+                                        <button type="button" id="remove_user_btn" class="btn btn-warning">刪除</button>
+                                    </div>
+                                </div>
+                                <div class="sign">
+                                    <div class="col-md-12">                                
+                                        <select data-set="Right" name="user_selector" id="user_showlist">
+                                            <option>選擇查詢客戶位址</option>
+                                        </select>
+                                        <button type="button" id="btn-userlist" class="btn btn-warning">確定</button>
+                                    </div>
+                                </div>
+                                <div class="user_address_score col-md-12 text-center">
+                                    <h2>客戶的信用評級：<span data-set="Right" id="credit_score">-</span></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="operation">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="add-record">
+                                        <form class="add_data">
+                                            <h4>新增該用戶信貸資料</h4><br>
+                                            <span>新增貸款ID：</span><input class="form-control" type="text" id="loan_id"placeholder="請輸入要新增的ID eg:0"><br>                                            
+                                            <span>新增貸款金額：</span><input class="form-control" type="text" data-add-loan-money="add_loan_money" id="loan_amount"placeholder="請輸入要新增的金額 eg:10000"><br>
+                                            <span>新增貸款起始日：</span><input class="form-control" type="text" id="loan_start_date"placeholder="請輸入要新增的起始日 eg:20220501"><br>
+                                            <span>新增貸款終止日：</span><input class="form-control" type="text" id="loan_end_date"placeholder="請輸入要新增終止日 eg:20240430"><br>
+                                            <span>新增貸款狀態：</span><input class="form-control" type="text" id="loan_status"placeholder="請輸入要貸款的狀態 eg:0">
+                                            <button type="button" name="add" id="add_loan_btn" class="btn btn-warning">確認新增</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="update-record">
+                                        <form class="update_data">
+                                            <h4>更改該用戶信貸狀態</h4><br>
+                                            <span>輸入要修改的信貸ID：</span><input placeholder="請輸入要修改的ID eg:0" class="form-control enter" type="text" id="update_bank_ID" data-update-ID="update_bank_ID"><br>
+                                            <input class="check" type="radio" value="1" name="loanstatus"><span>貸款結束</span><br>
+                                            <input class="check" type="radio" value="2" name="loanstatus"><span>貸款進行中</span><br>
+                                            <input class="check" type="radio" value="3" name="loanstatus"><span>貸款無法回收</span><br>
+                                            <input class="check" type="radio" value="4" name="loanstatus"><span>貸款延遲</span><br>
+                                            <button type="button" name="add" id="update_status" class="btn btn-warning">確認修改</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row" style="margin-left: 0.1%;">
+                                <div class="col-6">
+                                    <strong>選擇特定貸款ID</strong>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="credit_ID"placeholder="請輸入要查詢的的ID eg:0" />
+                                        <button type="button" id="filter_button" class="btn btn-warning">篩選</button>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="update">
+                                        <button type="button" id="updateTable_button" class="btn btn-warning">更新資料</button>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body table-responsive p-0" style="height: 300px ;width:54vw;">
+                                            <table class="table table-head-fixed text-nowrap" id="record_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="color: white; background-color: black;">信貸ID</th>
+                                                        <th style="color: white; background-color: black; ">貸款起始日</th>
+                                                        <th style="color: white; background-color: black; max-width:14%">銀行位址</th>
+                                                        <th style="color: white; background-color: black;">客戶位址</th>
+                                                        <th style="color: white; background-color: black; ">貸款金額</th>
+                                                        <th style="color: white; background-color: black; ">貸款終止日</th>
+                                                        <th style="color: white; background-color: black; ">信貸狀態</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table_body" id="record_tablebody"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <footer></footer>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.3/web3.min.js"></script>
+    <script src="./js/contract.js"></script>
+    <script src="./js/abi.js"></script>
+    <script >
+        var credit_contract;
+       $(async function () {   //網頁載入後第一個觸發的函式
+        //    console.log('ethereum', window.ethereum)   //window就是瀏覽器
+           if (typeof window.ethereum !== 'undefined') {           //檢查瀏覽器是否已安裝MetaMask
+               try {
+                    var accounts = await ethereum.request({ method: 'eth_requestAccounts' }) //MetaMask請求用戶授權, 連結會登入到MetaMask
+                    // console.log('accounts', accounts)
+                    web3 = new Web3(window.ethereum);
+
+                    updateWeb3Account(accounts[0])
+               } catch (error) {
+                   alert(error.message)
+               }
+           } else {
+               alert('未安裝 MetaMask!')
+           }
+       })
+       //MetaMask切換帳戶
+       ethereum.on('accountsChanged', function (accounts) {
+            console.log('accountsChanged', accounts)
+            updateWeb3Account(accounts[0])
+       })
+       //更新帳戶資料
+       function updateWeb3Account(account) {
+        web3.eth.defaultAccount = account;
+        $("#account").val(account);
+       }
+       //MetaMask連結區塊鏈
+       ethereum.on('connect', function (connectInfo) {
+            console.log('connect', connectInfo)
+            let chain = '(' + connectInfo.chainId + ')' + getChainNameByID(connectInfo.chainId)
+           $('#chain').val(chain)
+       })
+
+       //MetaMask切換網路
+       ethereum.on('chainChanged', function (chainId) {
+            console.log('chainChanged', chainId)
+            window.location.reload()   //網頁重整
+       })
+       //根據Chain ID取得網路名稱
+       function getChainNameByID(chainid) {
+           switch (chainid) {
+               case '0x1':
+                   return 'Ethereum Main Network'
+               case '0x3':
+                   return 'Ropsten Test Network'
+               case '0x4':
+                   return 'Rinkeby Test Network'
+               case '0x5':
+                   return 'Goerli Test Network'
+               case '0x2a':
+                   return 'Kovan Test Network'
+               default:
+                   return 'Unknown Network'
+           }
+       }
+
+       // create contract
+       $("#contract_address_btn").click(async function(){
+            var contract_address = $("#contract_address").val();
+            var bankAddress = $("#account").val();
+            credit_contract = new web3.eth.Contract(Credit_ABI, contract_address);
+            
+            getAllPermittedAccount(credit_contract);
+            getBankName(credit_contract, bankAddress);
+            getRole(credit_contract, bankAddress);
+
+            $("#contract_address").attr('readonly', true);
+            $("#contract_address_btn").attr('disabled', true);
+            
+        });
+
+        // Allow permit BUTTON
+        $("#add_user_btn").click(async function () {
+            var userAddress = $("#user_address").val();
+            var givePermission = true;
+            setPermission(credit_contract, userAddress, givePermission);
+
+        });
+        // Remove Permit BUTTON
+        $("#remove_user_btn").click(async function () {
+            var userAddress = $("#user_deletelist option:selected").val();
+            var givePermission = false;
+            setPermission(credit_contract, userAddress, givePermission);
+            $('#user_deletelist option:selected').remove();
+            // $('#user_showlist').remove();
+        });
+
+        // user list on click
+        var selected_user;
+        $("#btn-userlist").on('click', function(){
+            var selected = $("#user_showlist option:selected").val();
+            // console.log("Selected: ", selected);
+            selected_user = selected;
+            getClientAllRecord(credit_contract, selected);
+            generateClientCreditScore(credit_contract, selected);
+        })
+
+        // add new loan BUTTON
+        $("#add_loan_btn").click(async function(){
+            var id = $("#loan_id").val();
+            var amount = $("#loan_amount").val();
+            var loanDate = $("#loan_start_date").val();
+            var endDate = $("#loan_end_date").val();
+            var status = $("#loan_status").val();
+            var clientAddress = selected_user;
+            // console.log(clientAddress);
+
+            var clientRecord = await setClientRecord(credit_contract, id, loanDate, clientAddress, amount, endDate, status);
+        });
+
+        // Update loan status BUTTON
+        $("#update_status").click(async function(){
+            var clientAddress = $("#user_showlist option:selected").val();
+            var recordID = $("#update_bank_ID").val();
+            // var status = $('input[name="loanstatus"] :checked').val();
+            // var status = $("#loanstatus option:checked").val();
+            var status = $("input[type='radio'].check:checked").val();
+            // console.log(status);
+            updateRecordStatusByID(credit_contract, clientAddress, recordID, status);
+        });
+
+        // UPDATE client all record BUTTON
+        $("#updateTable_button").click(async function(){
+            var clientAddress = $("#user_showlist").val();
+            getClientAllRecord(credit_contract, clientAddress);
+            generateClientCreditScore(credit_contract, clientAddress);
+        });
+
+        // filter by ID BUTTON
+        $("#filter_button").click(async function(){
+            var clientAddress = $("#user_showlist option:selected").val();
+            var recordID = $("#credit_ID").val();
+            $("#record_tablebody").empty();
+            await getClientRecordByID(credit_contract, clientAddress, recordID);
+            
+        });
+
+        // permit account
+        async function setPermission(credit_contract, userAddress, givePermission){
+            // console.log("Contract: ", credit_contract, "user address: " , userAddress, "give permission" , givePermission)
+            var setPermission = await contract_setPermission(credit_contract, userAddress, givePermission);
+
+        }
+
+        // create Contract
+        async function createContract(abi, address){
+            var credit_contract = new web3.eth.Contract(abi, address);
+            var clientAddress = $("#user_showlist").val();
+        }
+
+        // update Record Status by ID
+        async function updateRecordStatusByID(credit_contract, clientAddress, recordID, status){
+            await contract_updateRecordStatusByID(credit_contract, clientAddress, recordID, status);
+        }
+
+        // get client's record
+        async function getClientAllRecord(credit_contract, clientAddress){
+                var all_record = await contract_getClientAllRecord(credit_contract, clientAddress);
+                // console.log("contract_getClientAllRecord: ", [all_record]);
+                
+                var html ="";
+                for (var index = 0; index < all_record.length;  index++){
+                    html += "<tr>";
+                    html += "<td>" + all_record[index][0] + "</td>"; 
+                    html += "<td>" + all_record[index][1] + "</td>";
+                    html += "<td>" + all_record[index][2] + "</td>";
+                    html += "<td>" + all_record[index][3] + "</td>";
+                    html += "<td>" + all_record[index][4] + "</td>";
+                    html += "<td>" + all_record[index][5] + "</td>";
+                    if(all_record[index][6]==1){
+                        html += "<td>" + "結束" + "</td>";
+                    } else if(all_record[index][6]==2){
+                        html += "<td>" + "進行中" + "</td>";
+                    } else if(all_record[index][6]==3){
+                        html += "<td>" + "無法回收" + "</td>";
+                    } else if(all_record[index][6]==4){
+                        html += "<td>" + "延遲" + "</td>";
+                    }
+                    html += "</tr>";
+                }
+                $("#record_tablebody").html(html);
+        }
+
+        // get client record by ID
+        async function getClientRecordByID(credit_contract, clientAddress, recordID){
+            var clientRecord = await contract_getClientRecordByID(credit_contract, clientAddress, recordID);
+            // console.log(clientRecord);
+                var html;
+                html ="";
+                html += "<tr>";
+                html += "<td>" + clientRecord[0] + "</td>"; 
+                html += "<td>" + clientRecord[1] + "</td>";
+                html += "<td>" + clientRecord[2] + "</td>";
+                html += "<td>" + clientRecord[3] + "</td>";
+                html += "<td>" + clientRecord[4] + "</td>";
+                html += "<td>" + clientRecord[5] + "</td>";
+                if(clientRecord[6]==1){
+                        html += "<td>" + "結束" + "</td>";
+                    } else if(clientRecord[6]==2){
+                        html += "<td>" + "進行中" + "</td>";
+                    } else if(clientRecord[6]==3){
+                        html += "<td>" + "無法回收" + "</td>";
+                    } else if(clientRecord[6]==4){
+                        html += "<td>" + "延遲" + "</td>";
+                    }
+                html += "</tr>";
+
+                $("#record_tablebody").html(html);
+                
+        }
+
+        // Get all permitted account
+        async function getAllPermittedAccount(credit_contract){
+            var permittedAccount = await contract_getAllPermittedAccount(credit_contract);
+            // console.log("permitted account", permittedAccount);
+            if (permittedAccount != null){
+                for (var index = 0; index < permittedAccount.length; index++){
+                    // console.log(permittedAccount[index]);
+                    $("#user_showlist").append($('<option>', {
+                        value: permittedAccount[index],
+                        text: permittedAccount[index]
+                    }, '</option>'));
+
+                    $("#user_deletelist").append($('<option>', {
+                        value: permittedAccount[index],
+                        text: permittedAccount[index]
+                    }, '</option>'));
+                }
+            }
+        }
+
+        // Generate client credit score function
+        async function generateClientCreditScore(credit_contract, clientAddress){
+            var clientCreditScore = await contract_generateClientCreditScore(credit_contract, clientAddress);
+            // console.log("Client's Credit Score is:", clientCreditScore)
+            if(clientCreditScore==0){
+                    $("#credit_score").text('-');
+                } else if(clientCreditScore>0){
+                    $("#credit_score").text(clientCreditScore);
+                }
+        }
+
+        async function setClientRecord(credit_contract, id, loanDate, clientAddress, amount, endDate, status){
+            var setClientRecord = await contract_setClientRecord(credit_contract, id, loanDate, clientAddress, amount, endDate, status);
+        }
+
+        async function getBankName(credit_contract, bankAddress){
+            var bankName = await contract_getBankName(credit_contract, bankAddress);
+            $("#bank_name").text(bankName);
+        }
+
+        async function getRole(credit_contract, userAddress){
+                var role = await contract_getRole(credit_contract, userAddress);
+                // console.log("role", role);
+                if(role == 2 ){
+                    $("#client_href").removeAttr('href');
+                    $("#admin_href").removeAttr('href');
+                    
+                } else if (role == 1){
+                    $("#client_href")[0].click();
+                }
+        }
+
+        async function getOwner(credit_contract){
+                var owner = await contract_getOwner(credit_contract);
+                return owner;
+            }
+
+   </script>
+
+    
+</html>
+

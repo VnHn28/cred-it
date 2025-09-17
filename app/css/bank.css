@@ -1,0 +1,107 @@
+header{
+    height: 150px;
+}
+strong{
+    font-size: 23px;
+    font-weight: 800;
+}
+label{
+    font-size: 23px;
+    font-weight: 800;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.bg{
+    background-color: white;
+    border: 1px solid rgb(190, 190, 190);
+    display: flex;
+    width: max-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.titlefont{
+    height: 75px;
+    padding: 20px;
+    font-weight: 800;
+}
+.UserSelect{
+    width:  54vw;
+
+}
+.UserSelect input{
+    margin-bottom: 1%;
+}
+.UserSelect .delete select{
+    padding: 0.5% 0.5% 0.5% 0.5%;
+    border-radius: 5px;
+    font-size: 17px;
+}
+.UserSelect .sign select{
+    padding: 0.5% 0.5% 0.5% 0.5%;
+    border-radius: 5px;
+    font-size: 17px;
+}
+#MainPage .user_address {
+    padding: 26px 20px;
+    margin-bottom: 0px;
+}
+#MainPage .user_address_select {
+    height: 50px;
+    border-radius: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 17vw;
+    background-color: #F0EFEB;
+}
+#MainPage .UserSelect .sign{
+    margin-top: 45px;
+}
+#MainPage .user_address_score{
+    padding: 5%;
+    font-weight: bold;
+}
+.delete{
+    margin-top: 1%;
+}
+.operation{
+    width: 54vw;
+}
+.operation h4{
+    font-weight: bold;
+}
+.add-record input{
+    width: 80%;
+}
+.add-record span{
+    font-size: 23px;
+}
+.add-record button{
+    margin: 3% 0%;
+}
+.update-record .check{
+    margin-top: 2%;
+    height: 20px;
+    width: 20px;
+}
+.update-record span{
+    font-size: 23px;
+}
+.update-record button{
+    margin: 3% 0%;
+}
+footer{
+    height: 120px;
+}
+.update{
+    position: absolute;
+    right: 3%;
+    bottom: 0;
+}
